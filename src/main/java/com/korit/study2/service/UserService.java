@@ -1,6 +1,9 @@
 package com.korit.study2.service;
 
 import com.korit.study2.dao.UserDao;
+import com.korit.study2.entity.User;
+
+import java.util.Optional;
 
 public class UserService {
     private static UserService instance;
@@ -18,6 +21,10 @@ public class UserService {
     }
 
     // username 중복확인
+    public boolean isDuplicatedUsername(String username) {
+        Optional<User> foundUser = userDao.findUserByUsername(username);
+        return foundUser.isPresent();
+    }
     // email 중복확인
     // 회원가입
     // 로그인

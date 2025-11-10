@@ -24,7 +24,7 @@ public class Main {
                 break;
             } else if ("1".equals(selectMenu)) {
                 System.out.println("[ 회원가입 ]");
-
+                System.out.println(userService.isDuplicatedUsername("dongyoon"));
                 //todo: 회원가입 메소드 호출
             } else if ("2".equals(selectMenu)) {
                 System.out.println("[ 로그인 ]");
