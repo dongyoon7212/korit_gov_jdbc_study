@@ -1,5 +1,7 @@
 package com.korit.study2;
 
+import com.korit.study2.dto.SigninReqDto;
+import com.korit.study2.dto.SignupReqDto;
 import com.korit.study2.entity.User;
 import com.korit.study2.service.UserService;
 
@@ -17,6 +19,7 @@ public class Main {
             System.out.println("3. 전체회원 조회");
             System.out.println("4. 회원 검색");
             System.out.println("q. 종료");
+            System.out.print(">> ");
             String selectMenu = scanner.nextLine();
 
             if ("q".equalsIgnoreCase(selectMenu)) {
@@ -24,12 +27,51 @@ public class Main {
                 break;
             } else if ("1".equals(selectMenu)) {
                 System.out.println("[ 회원가입 ]");
-                System.out.println(userService.isDuplicatedUsername("dongyoon"));
-                //todo: 회원가입 메소드 호출
+                //signupReqDto객체 생성
+                SignupReqDto signupReqDto = new SignupReqDto();
+                //while문으로 username 입력받기
+                while (true) {
+                    //중복확인 후 중복이면 다시 입력받는거 반복
+                    System.out.print("username: ");
+                    signupReqDto.setUsername(scanner.nextLine());
+                    //중복 아니면 break로 while 빠져나가서 비번 입력받기
+                    if (!userService.isDuplicatedUsername(signupReqDto.getUsername())) {
+                        break;
+                    }
+                    System.out.println("이미 사용중인 username입니다.");
+                }
+                System.out.print("password: ");
+                signupReqDto.setPassword(scanner.nextLine());
+
+                //이멜도 username처럼 입력받기
+                while (true) {
+                    System.out.print("email: ");
+                    signupReqDto.setEmail(scanner.nextLine());
+                    if (!userService.isDuplicatedEmail(signupReqDto.getEmail())) {
+                        break;
+                    }
+                    System.out.println("이미 가입된 이메일입니다.");
+                }
+                //마지막으로 signup메소드 호출해서 회원가입
+                int result = userService.signup(signupReqDto);
+                if (result == 0) {
+                    System.out.println("회원가입에 실패하였습니다.");
+                }
+                System.out.println("회원가입이 완료되었습니다.");
             } else if ("2".equals(selectMenu)) {
                 System.out.println("[ 로그인 ]");
 
-                //todo: 로그인 메소드 호출
+                SigninReqDto signinReqDto = new SigninReqDto();
+                System.out.print("username: ");
+                signinReqDto.setUsername(scanner.nextLine());
+                System.out.print("password: ");
+                signinReqDto.setPassword(scanner.nextLine());
+
+                User user = userService.signin(signinReqDto);
+                if (user != null) {
+                    System.out.println("로그인 되었습니다.");
+                    System.out.println("로그인된 유저: " + user);
+                }
             } else if ("3".equals(selectMenu)) {
                 System.out.println("[ 전체회원 조회 ]");
 
