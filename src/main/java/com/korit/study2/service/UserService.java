@@ -1,11 +1,13 @@
 package com.korit.study2.service;
 
 import com.korit.study2.dao.UserDao;
+import com.korit.study2.dto.GetUserListRespDto;
 import com.korit.study2.dto.SigninReqDto;
 import com.korit.study2.dto.SignupReqDto;
 import com.korit.study2.entity.User;
 import com.korit.study2.util.PasswordEncoder;
 
+import java.util.List;
 import java.util.Optional;
 
 public class UserService {
@@ -52,5 +54,11 @@ public class UserService {
         return user;
     }
     // 회원 전체 조회
+    public List<GetUserListRespDto> getUserListAll() {
+        return userDao.getUserListAll();
+    }
     // 회원 검색
+    public List<GetUserListRespDto> getUserListByKeyword(String keyword) {
+        return userDao.getUserListByKeyword(keyword);
+    }
 }

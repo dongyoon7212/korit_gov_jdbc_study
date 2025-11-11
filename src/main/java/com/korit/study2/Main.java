@@ -1,10 +1,12 @@
 package com.korit.study2;
 
+import com.korit.study2.dto.GetUserListRespDto;
 import com.korit.study2.dto.SigninReqDto;
 import com.korit.study2.dto.SignupReqDto;
 import com.korit.study2.entity.User;
 import com.korit.study2.service.UserService;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -75,11 +77,14 @@ public class Main {
             } else if ("3".equals(selectMenu)) {
                 System.out.println("[ 전체회원 조회 ]");
 
-                //todo: 전체회원 조회 메소드 호출
+                List<GetUserListRespDto> userListRespDtoList = userService.getUserListAll();
+                userListRespDtoList.forEach(System.out::println);
             } else if ("4".equals(selectMenu)) {
                 System.out.println("[ 회원 검색 ]");
-
-                //todo: 회원 검색 메소드 호출
+                System.out.print("username: ");
+                String keyword = scanner.nextLine();
+                List<GetUserListRespDto> userListRespDtos = userService.getUserListByKeyword(keyword);
+                userListRespDtos.forEach(System.out::println);
             }
         }
     }
