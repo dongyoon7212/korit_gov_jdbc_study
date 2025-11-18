@@ -7,10 +7,10 @@ public class Ex1 {
         int math = 92;
 
         // 1. 총점 구하기
-        int sum = ;
+        int sum = kor + eng + math;
 
         // 2. 평균 구하기
-        double avg = ;
+        double avg = sum / 3;
 
         // 3. 최고점 구하기
         int max = kor;
@@ -18,7 +18,7 @@ public class Ex1 {
             max = eng;
         }
         if (math > max) {
-            max = ;
+            max = math;
         }
 
         System.out.println("총점: " + sum);

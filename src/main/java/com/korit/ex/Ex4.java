@@ -8,7 +8,12 @@ public class Ex4 {
         int countHigh = 0;
 
         // 1. 총점과 90점 이상 개수 구하기
-
+        for (int num : scores) {
+            sum += num;
+            if (num >= 90) {
+                countHigh++;
+            }
+        }
 
         double avg = (double) sum / scores.length;
 

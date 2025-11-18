@@ -6,7 +6,8 @@ public class Ex2 {
 
     // 1. 생성자
     public Ex2(String name, int age) {
-        //
+        this.name = name;
+        this.age = age;
     }
 
     // 2. 정보 출력 메서드
@@ -16,7 +17,7 @@ public class Ex2 {
 
     // 3. 성인 여부 확인 (20세 이상이면 true)
     public boolean isAdult() {
-        //
+        return age >= 20;
     }
 
     public static void main(String[] args) {
